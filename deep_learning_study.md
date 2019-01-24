@@ -1,9 +1,16 @@
 # Relational netwrokの紹介
 
-# Paper
-- A simple network module for relational reasoning
+# A simple network module for relational reasoning
 - NIPS 2017
 - deep mind
+
+# Abst
+- Relational Networkという関係推論を行うモジュールを提案
+- Visual QA tsak (CLEVR) で (当時SOTA)を達成
+- Text QA task (bAbI) super human なスコアを達成
+- 我々の研究は Relatinal Networkのモジュールを既存のdeep neural networkに追加することで、要素の関係を学習できることを示した。
+
+# Relational Question
 
 ## abst
 - 関係性を学習する

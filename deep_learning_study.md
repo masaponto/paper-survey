@@ -4,21 +4,14 @@
 - NIPS 2017
 - deep mind
 
-# Abst
+## Abst
 - Relational Networkという関係推論を行うモジュールを提案
 - Visual QA tsak (CLEVR) で (当時SOTA)を達成
 - Text QA task (bAbI) super human なスコアを達成
 - 我々の研究は Relatinal Networkのモジュールを既存のdeep neural networkに追加することで、要素の関係を学習できることを示した。
 
-# Relational Question
+## Relational Question
 
-## abst
-- 関係性を学習する
-- 画像の各オブジェクトに対応する特徴。全ての組み合わせを学習する
-- 様々なQA task で高い精度を確認しました。(当時はSOTA)
-- 赤色のとなりに青色?
-
-- 数式
 
 # Memory networks
 - 過去の中間表現をメモリとして保存しておき、それを利用して推論する

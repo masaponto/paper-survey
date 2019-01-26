@@ -63,6 +63,7 @@ Relational Networkの欠点はそれぞれ入力オブジェクトのペア(二�
 - 1) Input module, 知覚的な入力ベクトルを内部表現ベクトルに変換します。そして、Short-term storage(短期記憶装置)に保存します。
 - 2) Attention controller, 上記の内部表現にAttention機構を適用します。そして、working memroy bufferを更新します。
 - 3) reasoning module, working memory に保存されたオブジェクトの集合を扱います。そして、最終結果を出力します。
+
 このコンポーネントベースのアーキテクチャは、BaddeleyとHitchが提案したmulti-component working呼ばれる
 コグニティブサイエンス(認知科学)における有名なモデルを元に触発されました。
 私達はこの提案モデルを bAbIというテキストベースのQAタスクのデータセットを使って検証しました。

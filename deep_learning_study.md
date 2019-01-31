@@ -24,6 +24,7 @@
 
 # Working Memory Networks: Augmenting Memory Networks with a Relational Reasoning Module 
 - https://arxiv.org/abs/1805.09354
+- Github: https://github.com/jgpavez/Working-Memory-Networks
 
 ## 概要
 - 近年Deep Learning を用いた複雑な関係推論を解く手法が提案されている。
@@ -81,6 +82,22 @@ bAbI-10k を (jointly train)学習してSOTAを達成しました。前のSOTA�
 
 ![figure_1](https://gist.githubusercontent.com/masaponto/81ace6c9abfc2d3ccf8c6197a5878706/raw/0253204837197fb85535468f56010480da692602/figure_1.png)
 
+## Model
+私達のモデルはmemory network アーキテクチャに基づいています。
+memory network ではなく、より複雑なタスクをとくために、reasoning module を導入しております。
+提案手法は3つのモジュールをもっています、入力モジュール、Attentionコントローラ、関係推論モジュールです。
+入力情報は複数のパスやhopで処理されます。
+それぞれのパスで前のhopの出力は、現在のパスの状態をだんだんと加算しながら作ることができます。
+
+### Inputモジュール
+input モジュールはは知覚入力を内部特徴表現へ変換します。
+入力情報はチャンク毎に処理されます。それぞれのチャンクは短期記憶装置に保存されます。チャンクの定義はタスクに依存します。
+テキストのQAタスクでは、私達はそれぞれのチャンクを文章と定義しました。他のオプションとしてn-gramや文章全体が考えられます。
+この短期記憶装置はhopの間だけアクセスされます。
+
+### Attention controller
+
+### Reasoning module
 
 ## WHAT’S THE CORE IDEA OF THIS PAPER?
 

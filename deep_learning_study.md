@@ -80,14 +80,15 @@ bAbI-10k を (jointly train)学習してSOTAを達成しました。前のSOTA�
 また、かなりの計算時間の削減も達成しております。
 この結果から、RNがより複雑な大きいタスクに適用できるようになると私達は考えております。
 
-![figure_1](https://gist.githubusercontent.com/masaponto/81ace6c9abfc2d3ccf8c6197a5878706/raw/0253204837197fb85535468f56010480da692602/figure_1.png)
-
 ## Model
 私達のモデルはmemory network アーキテクチャに基づいています。
 memory network ではなく、より複雑なタスクをとくために、reasoning module を導入しております。
 提案手法は3つのモジュールをもっています、入力モジュール、Attentionコントローラ、関係推論モジュールです。
 入力情報は複数のパスやhopで処理されます。
 それぞれのパスで前のhopの出力は、現在のパスの状態をだんだんと加算しながら作ることができます。
+
+![figure_1](https://gist.githubusercontent.com/masaponto/81ace6c9abfc2d3ccf8c6197a5878706/raw/0253204837197fb85535468f56010480da692602/figure_1.png)
+
 
 ### Inputモジュール
 input モジュールはは知覚入力を内部特徴表現へ変換します。
@@ -96,6 +97,21 @@ input モジュールはは知覚入力を内部特徴表現へ変換します�
 この短期記憶装置はhopの間だけアクセスされます。
 
 ### Attention controller
+Attention コントローラはモデルのメモリバッファのどの部分に注意を向けるかを決定します。
+注意が向けられたメモリバッファはworking memoryバッファに全てのホップの間保持されます。
+Attentionコントローラは手元のタスクによって状態が決定します。
+例えば、QAタスクでは、Questionはattentionを決定します。
+また、attentionは前のホップの出力によっても決定されます。そしてそれは、モデルに時間とともに記憶の新しい部分に注目を変えさせます。
+多くのモデルはメモリバッファとquestionの間で互換性関数を使いながらそれぞれのメモリバッファのためにAttentionを計算します。
+それから、その出力は、attentionを重みとしたメモリバッファの重み付き和で計算されます。
+それぞれのメモリバッファのAttentionの計算するシンプルな方法はdot-product attentionです。
+この種のメカニズムはオリジナルのメモリネットワークで使われます。そしてそれぞれのメモリバッファと質問で　dot-productとしてAttentionの値を計算します。
+けれども、この種のattenitonはシンプルです。より複雑なタスクにいおては十分でないかもしれない。
+また、Atteniton機構において学習された重みがない場合、Attenitonは学習されたembeddingに全体的に依存します。
+入力モジュールとattentionモジュールの学習を分割するために私達が避けたかったことです。
+dot-product Attentionで学習する1つの方法はメモリバッファとqueryベクトルを線形に写像することです。
+学習された写像のための行列によってベクトルの積をとることでなされます。(ちなみにフィードフォワードニューラルネットワークとおなじです)
+このようにして、私達はAttenitonと入力のembeddingの学習をそれぞれの部分で定義することができます。そして、より複雑なAttenitonのパターンを使用ができます。
 
 ### Reasoning module
 

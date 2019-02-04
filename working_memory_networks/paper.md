@@ -131,21 +131,17 @@ RNはメモリの間の関係を推論するためにAtentionされたメモリ�
 質問は入力文章として表現されているQ個の単語でできおります。
 
 #### Input module
-Each word in each sentence is encoded into a vector representation vi using an embedding matrix
-W ∈ R
-|V |×d
-, where d is the embedding size.
-Then, the sentence is converted into a memory
-vector mi using the final output of a gated recurrent neural network (GRU) (Chung et al., 2014):
+それぞれの文章のそれぞれの単語はembedding行列を使ってベクトル表現 vi にエンコードされます。  
+W ∈ R^ |V |×d  
+ここでdはembedding sizeです。
+そのとき、文章はGRUの最終出力を使ってメモリベクトルmi に変換されます。  
 mi = GRU([v1, v2, ..., vM])
-Each memory {mi}
-L
-i=1, where mi ∈ R
-d
-, is stored
-into the short-term memory storage. The question
-is encoded into a vector u in a similar way, using
-the output of a gated recurrent network.
+それぞれのメモリ  
+{mi} i = 1..L where mi ∈ R^d  
+は短期メモリバッファに保存されます。
+questionの文章はGRUの最終出力を使ってベクトルuに同じ方法でエンコードされます。
+
+### Attention controller
 
 
 ## WHAT’S THE CORE IDEA OF THIS PAPER?

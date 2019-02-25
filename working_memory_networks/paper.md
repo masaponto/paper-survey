@@ -172,15 +172,25 @@ Ok = ft(ok).
 関係推論モジュールは、この論文では、relation networkを使います。
 RNの出力ベクトルは質問ベクトルと一緒にペアに結合されます。
 それぞれのペアはニューラルネットワークgθにと通されます、そして全てのニューラルネットワークの出力は一つのベクトルを生成します。
-そして、その合計が最後のニューラルネットワークfφに通されます。
+そして、その合計が最後のニューラルネットワークfφに通されます。  
+r = fφ(sigma gθ([oi, oj, u]))  
+その時Relation netwokの出力は、最後の重み行列とsoftmax関数を通ります、そして推論された答えを生成します。  
+a = softmax(Vr)  
+ここで V ∈ R |A|×dφです。
+A は解答可能な数字です。そしてdφはfφの出力の次元数です。
+ネットワーク全体は出力a^と真のラベルaの間をend-to-endに標準的な交差エントロピー誤差で学習されます。
 
+## Related work
+## Experiments
+
+
+### Memory Augmented Neural Network
 
 ## WHAT’S THE CORE IDEA OF THIS PAPER?
 
 ## WHAT’S THE KEY ACHIEVEMENT?
 
 ## Experiment
-
 
 ## Future works
 

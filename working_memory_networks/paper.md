@@ -182,6 +182,7 @@ A は解答可能な数字です。そしてdφはfφの出力の次元数です
 
 ## Related work
 ## Experiments
+### Textual Questios Answering
 テキストのQAタスクでの私達のモデルを評価するために、私達はFacebook bAbI-10k dataset を使いました。
 bAbIデータセットは20の異なるタスクをもつテキストQAタスクのベンチマークデータセットです。
 それぞれのタスクは異なる関係推論技術をテストするために作成されました。例えば、演繹法、帰納法そして、会議解決。
@@ -194,6 +195,7 @@ bAbIデータセットは20の異なるタスクをもつテキストQAタスク
 Entnet(Henaff etal., 2016)やいくつかのモデル(Liu and Perez, 2017)はper-task学習の精度に着目しております。
 私達はjointでの学習に着目します。なぜなら、私達の考えは、モデルの一般性をよりみたいからです。
 データセットの詳細な解析は Lee et al (2015)で見ることができます。
+### Model Details
 
 
 ### Memory Augmented Neural Network

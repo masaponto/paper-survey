@@ -256,6 +256,42 @@ CNNの出力はk次元でdxdの大きさです。(kは最後の畳み込み層�
 しかし、Visual QAタスクでは、私達は加法注意 (Additive Attention)機構を使いました。
 加法注意はメモリのベクトルと状態ベクトルをつなげたものに階層型ニューラルネットワークを使ってAttention weightを計算します。
 
+## Results 
+私達のモデルはvalidation/testのaccuracy で 65.6%/65.8%を達成した。
+また、私達は、Module Neural Network (Andreas et al., 2016)に匹敵する性能を達成しました。
+Module Neural Networkは文章を構造化表現に処理する標準的なNLPのツールに使われてます。
+Module Neural Networkとは違って、私達はモデル自身にテキストをどう処理するかを学習させることで、生の入力文書だけを使ってこの結果を達成しました。
+NLVRデータセットで使われているのはより複雑な自然言語なため、私達はbAbIデータセットのときより大きなembeddingサイズとGRUの隠れ層をが必要でした。(embedding size = 100, GRU hidden layer = 128)
+しかし、関係推論とAttention機構のコンポーネントから入力部分を別にするよい特徴でした:
+(より複雑な言語文章を処理するためには、より大きな入力モジュールのキャパシティが必要です。)
+
+## From O(n^2) to O(n)
+RNのメジャーな制限の一つはオブジェクトをペアとして処理していかなければならないことです。
+そのため、RNはO(n^2)で順伝播、逆伝播を処理しなけれなばならい。(nはメモリの数)
+これはこれはメモリの数が多くなるほど、急激に計算コストが上がります。
+対象的に、W-MemNNは計算量は線形的です。
+しかしながらW-MemNNの計算時間はワーキングメモリバッファの大きさに2次的に依存します。
+それでも、この数値はメモリの数よりも小さいことが期待されます。
+両方のモデルを比較するために、私達はバッチサイズが32での順伝播と逆伝播の計算時間を計測しました。
+この実験はGPU NVIDIA K80を使って行いました。
+Figure 2 は結果を示します。  
+
+![figure_2](https://github.com/masaponto/paper-survey/blob/master/working_memory_networks/figure_2.png)  
+1バッチでの順伝播と逆伝播の計算時間。バッチサイズは32。
+5メモリのときは同じくらいですが、30メモリのときは、W-MemNNは50sなのにRNは930sです。約20倍早いです。
+
+## Memory Visualizations
+Memory Netwokrのよい特徴の一つは、Attention weightをみることで、関係推論の解釈が可能なことです。
+対称的に、RNはこの特徴がありません。
+Table 2はvisual-textual question answeringのAttentionの値を示してます。  
+
+![figure_2](https://github.com/masaponto/paper-survey/blob/master/working_memory_networks/table_2.png)  
+Texitual-visual QAのAttentionの可視化の例。
+上、NLVRデータセットのAttentionの値の可視化。
+より見やすい画像を得るため、私たちはAttention matrixにガウシアンblurを適用しました。
+下、bAbIデータセットのAttentionの値。
+それぞれのセルで全てのheadのAttentionの合計が示されてます。
+
 ## WHAT’S THE CORE IDEA OF THIS PAPER?
 
 ## WHAT’S THE KEY ACHIEVEMENT?

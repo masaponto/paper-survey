@@ -171,7 +171,7 @@ bAbIデータセットは20の異なるタスクをもつテキストQAタスク
 Entnet(Henaff etal., 2016)やいくつかのモデル(Liu and Perez, 2017)はper-task学習の精度に着目しております。
 私達はjointでの学習に着目します。なぜなら、私達の考えは、モデルの一般性をよりみたいからです。
 データセットの詳細な解析は Lee et al (2015)で見ることができます。
-### Model Details
+#### Model Details
 入力データをエンコードするために、私達は1文のそれぞれの単語を大きさdの実数のベクトルに写像するword embeddingを使いました。
 私達はd030と定義しました。そして、それぞれの文を処理するために30unitsのGRUを使いました。
 私達は質問の直前にサポート集合の30文を使いました。
@@ -185,7 +185,7 @@ Entnet(Henaff etal., 2016)やいくつかのモデル(Liu and Perez, 2017)はper
 私達はfφネットワークを除きました、なぜなら、私たちは、それを使ったとき、改善がみられなかったから。
 最後のレイヤーは答えの語彙をだすsoftmaxのロジットを仏録する線形レイヤーです。
 
-### Training Details
+#### Training Details
 私達は私達のモデルをクロスエントロピー誤差とAdam最適化(Kingma and Ba, 2014)を使って学習を行いました。
 私達は学習率ν = 1e−3を使いました。
 私達は400エポックで学習しました。
@@ -198,7 +198,7 @@ Sukhbaatar et alのようにバッチサイズは32で行いました。
 いくつかのケースで、私達は学習率が1e-5より低くすることと、
 5エポックごとに20エポックまでν/2 にアニーリングして、400エポックの後再学習することはいい精度がでることを見つけた。
 
-## bAbI-10k Results
+#### bAbI-10k Results
 joint法でbAbI-10kデータセットを学習した私達のモデルは(10回以上)はAccuracy99.58を達成した。
 これはSparse Differential Neural Computer (SDNC) (Rae et al., 2016)による前のstate-of-the-artより2.38%改善である。
 10回の最も良いモデルはb1bI-10kデータセットをほとんど解くことができた。(0.3%マージン)
@@ -212,14 +212,25 @@ joint法でbAbI-10kデータセットを学習した私達のモデルは(10回�
 私達はAttention機構を入れることで、関係推論モジュールが、関連したオブジェクトの関係を学習することにフォーカスすることができると考えている。
 (関係ないオブジェクトの間の(偽の)関係をを学習しないですむ。)
 そのため、Multi-head attentino 機構はとても助けになる。  
+  
+![table_1](https://github.com/masaponto/paper-survey/blob/master/working_memory_networks/table_1.png)  
+Table1. bAbI-10kデータセットJointlyで学習したときのテストのAccuracy.
+MN-Sは教師ありMemoryNetworkです。MN-Uは教師なしのend-to-endのmemoryネットワークです。そしてWMNはWorking memory networkです。
+LSTMとMN-Uそして、MN-Sの結果はfrom Sukhbaatar et al. (2015)からとられました。
+SDNCの結果はRae et al. (2016)から。
+WMN†は2つのWorking memory networkのアンサンブルです。
 
-![table_1](https://github.com/masaponto/paper-survey/blob/master/working_memory_networks/table_1.png)
+#### The Effect of the Relational Reasoning Module
+オリジナルのMemory networkと比較したとき、私達のモデルは17(positional reasoning)と19(path finding)のタスクについて十分に改善してます。
+両方のタスクは複数の関係の解析が必要です。(Lee et al., 2015). 
+例えば、タスク19はゴールするためのパスごとに異なる場所の要素の関係についてモデルが関係推論する.
+MemN2Nモデルと比較してTask19についてAccuracyは75.1に改善しました。また、task17に関しては41.5%改善しました。
+両方のタスクは関係推論のものなので、私達は両方のタスクにおいてW-MemNNの関係推論モジュールはとても有効であると予想している。
+両方のタスクは(特にタスク3は)大量な数の要素を扱わなければならない。
+これらの場合、Attention機構は無関係な要素をフィルタすることに重要です。
 
+### Textual Questios Answering
 
-## The Effect of the Relational Reasoning Module
-
-
-### Memory Augmented Neural Network
 
 ## WHAT’S THE CORE IDEA OF THIS PAPER?
 

@@ -219,6 +219,10 @@ MN-Sは教師ありMemoryNetworkです。MN-Uは教師なしのend-to-endのmemo
 LSTMとMN-Uそして、MN-Sの結果はfrom Sukhbaatar et al. (2015)からとられました。
 SDNCの結果はRae et al. (2016)から。
 WMN†は2つのWorking memory networkのアンサンブルです。
+```
+Accurcayといいつつ、error(交差エントロピー?)と思われる。error=0.0のものは、丸められていると思われる。
+Mean Error(%)はモデルごとのerrorの平均。Failed taskはerror5%以上のものの数。
+```
 
 #### The Effect of the Relational Reasoning Module
 オリジナルのMemory networkと比較したとき、私達のモデルは17(positional reasoning)と19(path finding)のタスクについて十分に改善してます。

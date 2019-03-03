@@ -63,7 +63,7 @@ memory network ではなく、より複雑なタスクをとくために、reaso
 入力情報は複数のパスやhopで処理されます。
 それぞれのパスで前のhopの出力は、現在のパスの状態をだんだんと加算しながら作ることができます。
 
-![figure_1](https://gist.githubusercontent.com/masaponto/81ace6c9abfc2d3ccf8c6197a5878706/raw/0253204837197fb85535468f56010480da692602/figure_1.png)
+![figure_1](https://github.com/masaponto/paper-survey/blob/master/working_memory_networks/figure_1.png)
 
 
 #### Inputモジュール

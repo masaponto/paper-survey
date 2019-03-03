@@ -292,6 +292,11 @@ Texitual-visual QAのAttentionの可視化の例。
 下、bAbIデータセットのAttentionの値。
 それぞれのセルで全てのheadのAttentionの合計が示されてます。
 
+```
+上画像、それぞれの質問に3つ画像があるのは不明。画像は質問に対して見るべき画像の部分に注意が向けられていることを示していると思われる。  
+下画像、質問文に対して答えるのに必要な要素文に注意が向けられていることを示していると思われる。
+```
+
 ## WHAT’S THE CORE IDEA OF THIS PAPER?
 
 ## WHAT’S THE KEY ACHIEVEMENT?

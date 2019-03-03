@@ -198,6 +198,27 @@ Sukhbaatar et alのようにバッチサイズは32で行いました。
 いくつかのケースで、私達は学習率が1e-5より低くすることと、
 5エポックごとに20エポックまでν/2 にアニーリングして、400エポックの後再学習することはいい精度がでることを見つけた。
 
+## bAbI-10k Results
+joint法でbAbI-10kデータセットを学習した私達のモデルは(10回以上)はAccuracy99.58を達成した。
+これはSparse Differential Neural Computer (SDNC) (Rae et al., 2016)による前のstate-of-the-artより2.38%改善である。
+10回の最も良いモデルはb1bI-10kデータセットをほとんど解くことができた。(0.3%マージン)
+しかしながら、単純な2モデルでのアンサンブルは20タスク全てをとくこができました。そして、ほぼ完璧な正解率99.7を達成しました。
+私達はそれぞれのタスクの結果をTable 1にリストしました。
+結果では、他の著者は高い分散を出した。
+例えば、SDNCの著者は15回の平均のAccuracyと標準偏差は93.6+- 2.5 (with 15.9 ± 1.6 passedtasks)だった。
+対象的に、私達のモデルは平均のAccuracyは 98.3 ± 1.2 (with 18.6 ± 0.4 passed tasks)だった、そして、それはSDNCの結果よりも良くて、安定的です。
+関係ネットワークは18/20のタスクを解くことができた。
+私達はより良いパフォーマンスを達成できました。そして、かなり少ない計算量で。このことは4.3章で説明します。  
+私達はAttention機構を入れることで、関係推論モジュールが、関連したオブジェクトの関係を学習することにフォーカスすることができると考えている。
+(関係ないオブジェクトの間の(偽の)関係をを学習しないですむ。)
+そのため、Multi-head attentino 機構はとても助けになる。  
+
+![table_1](https://github.com/masaponto/paper-survey/blob/master/working_memory_networks/table_1.png)
+
+
+## The Effect of the Relational Reasoning Module
+
+
 ### Memory Augmented Neural Network
 
 ## WHAT’S THE CORE IDEA OF THIS PAPER?
